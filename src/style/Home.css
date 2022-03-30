@@ -1,0 +1,11 @@
+.btn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 70px;
+  color: white;
+  background-color: grey;
+}
+
+.btn:hover {
+  background-color: #5a42e0;
+}

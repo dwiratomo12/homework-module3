@@ -1,0 +1,64 @@
+.card {
+  margin: 10px;
+  border: 1px solid #000;
+  padding: 10px;
+  width: 200px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 7px 7px 30px -8px rgba(0, 0, 0, 0.3);
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.card__image > img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card__data {
+  padding: 12px;
+}
+
+.card__content {
+  height: 67px;
+}
+
+.card__title {
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+.card__artist {
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+.card .card__action {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 70px;
+  color: white;
+  background-color: grey;
+}
+
+.btn:hover {
+  background-color: #24cf88;
+}
