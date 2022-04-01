@@ -1,24 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import spotifyConfig from "../data/SpotifyConfig";
 import "../style/SearchBar.css";
 
-class SearchBar extends Component {
-  state = {
-    text: "",
+const SearchBar = ({ accessToken, onSuccess, onClearSearch }) => {
+  const [text, setText] = useState("");
+  const [isClear, setIsClear] = useState(true);
+
+  const handleInput = (e) => {
+    setText(e.target.value);
   };
 
-  handleInput = (e) => {
-    this.setState({ text: e.target.value });
-  };
-
-  onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { text } = this.state;
-
-    var requestOptions = {
+    const requestOptions = {
       headers: {
-        Authorization: "Bearer " + this.props.accessToken,
+        Authorization: "Bearer " + accessToken,
         "Content-Type": "application/json",
       },
     };
@@ -27,22 +24,33 @@ class SearchBar extends Component {
       const response = await fetch(`${spotifyConfig.SPOTIFY_BASE_URL}/search?type=track&q=${text}`, requestOptions).then((data) => data.json());
 
       const tracks = response.tracks.items;
-      this.props.onSuccess(tracks);
+      onSuccess(tracks);
+      setIsClear(false);
     } catch (e) {
       alert(e);
     }
-
-    e.target.blur();
   };
 
-  render = () => {
-    return (
-      <form className="form-search" onSubmit={(e) => this.onSubmit(e)}>
-        <input type="text" placeholder="Search..." className="form-search__input" required onChange={(e) => this.handleInput(e)} />
+  const handleClear = () => {
+    onClearSearch();
+    setText("");
+    setIsClear(true);
+  };
+
+  return (
+    <div>
+      <form className="form-search" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Search..." className="form-search__input" required value={text} onChange={handleInput} />
         <button type="submit" className="btn"></button>
       </form>
-    );
-  };
-}
 
-export default SearchBar;
+      {!isClear && (
+        <button className="btn" onClick={handleClear}>
+          Clear search
+        </button>
+      )}
+    </div>
+  );
+};
+
+export { SearchBar };
