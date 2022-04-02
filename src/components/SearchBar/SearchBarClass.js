@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import spotifyConfig from "../data/SpotifyConfig";
 import "../style/SearchBar.css";
 
-class SearchBar extends Component {
+class SearchBarClass extends Component {
   state = {
     text: "",
   };
@@ -45,4 +45,4 @@ class SearchBar extends Component {
   };
 }
 
-export default SearchBar;
+export default SearchBarClass;

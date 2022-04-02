@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import spotifyConfig from "../data/SpotifyConfig";
-import "../style/SearchBar.css";
+import spotifyConfig from "../../data/SpotifyConfig";
+import "./index.css";
 
 const SearchBar = ({ accessToken, onSuccess, onClearSearch }) => {
   const [text, setText] = useState("");

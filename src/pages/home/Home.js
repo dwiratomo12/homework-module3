@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import spotifyConfig from "../../data/SpotifyConfig";
 import SearchBar from "../../components/SearchBar";
 import Card from "../../components/Card";
-import "../../style/Home.css";
+import "./index.css";
 
 const Home = () => {
   const [accessToken, setAccessToken] = useState("");
@@ -31,6 +31,7 @@ const Home = () => {
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 
     return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${spotifyConfig.SPOTIFY_SCOPE}`;
+    // return `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=http://localhost:3000&response_type=token`;
   };
 
   const filterSelectedTracks = () => {
@@ -67,7 +68,6 @@ const Home = () => {
       {!isAuthorize && (
         <main className="center">
           <p>Login first</p>
-          <Button href={getSpotifyLinkAuthorize()}>Authorize</Button>
           <button className="btn" href={getSpotifyLinkAuthorize()}>
             Authorize
           </button>
